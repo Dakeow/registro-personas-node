@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Agregado -->
+    <title>Registro de Personas</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Registro de Personas</h1>
+        <form id="personaForm" class="mt-4" @submit.prevent="agregarPersona">
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+            <input type="number" id="edad" class="form-control mt-2" placeholder="Edad" required>
+            <input type="file" id="imagen" class="form-control mt-2" required>
+            <button type="submit" class="btn btn-primary mt-2">Agregar Persona</button>
+        </form>
+        
+        <div id="personaList" class="mt-4">
+            <div class="persona-card" v-for="(persona, index) in personas" :key="index">
+                <img :src="persona.imagen" alt="Imagen de {{ persona.nombre }}">
+                <div>
+                    <h5>{{ persona.nombre }} ({{ persona.edad }} años)</h5>
+                    <button class="btn btn-danger btn-delete" @click="eliminarPersona(index)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
